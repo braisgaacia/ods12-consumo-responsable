@@ -5,204 +5,379 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ODS 12: Producción y Consumo Responsables</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --ods12-color: #bf8b2e;
-            --bg-container: #fef9f0;
-            --border-container: #d4a373;
+            --ods12-dark: #8c621d;
+            --ods12-soft: #fdf6e7;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #1a202c;
+            scroll-behavior: smooth;
         }
 
-        /* Estilos específicos solicitados para contenedores */
+        /* Estilo de los contenedores solicitados */
         .ods-container {
-            background-color: var(--bg-container);
-            border: 3px solid var(--border-container);
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .nav-link {
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background-color: var(--ods12-color);
-            color: white;
-        }
-
-        .active-tab {
-            background-color: var(--ods12-color) !important;
-            color: white !important;
-        }
-
-        .hidden-page {
-            display: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-
-        .infografia {
-            border: 2px dashed var(--ods12-color);
-            padding: 10px;
             background: white;
+            border-left: 10px solid var(--ods12-color);
+            padding: 3rem;
+            margin: 2.5rem 0;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        header {
-            background-color: var(--ods12-color);
+        .ods-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Navegación Interactiva */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--ods12-soft);
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 0.5rem 1rem;
+            font-weight: 600;
+            color: #4a5568;
+            transition: color 0.3s;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background: var(--ods12-color);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-item:hover::after {
+            width: 80%;
+        }
+
+        .nav-item:hover {
+            color: var(--ods12-color);
+        }
+
+        /* Animaciones */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden-page { display: none; }
+
+        .image-zoom {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+
+        .image-zoom img {
+            transition: transform 0.5s ease;
+        }
+
+        .image-zoom:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Botón de cambio de página */
+        .toggle-btn {
+            background: linear-gradient(135deg, var(--ods12-color), var(--ods12-dark));
             color: white;
-            padding: 2rem;
-            text-align: center;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 15px -3px rgba(191, 139, 46, 0.4);
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            filter: brightness(1.1);
+            transform: rotate(-1deg) scale(1.05);
+        }
+
+        /* Badge de texto extra */
+        .info-badge {
+            background: var(--ods12-soft);
+            color: var(--ods12-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 class="text-4xl font-bold italic">Objetivo de Desarrollo Sostenible 12</h1>
-        <p class="text-xl mt-2">Garantizar modalidades de consumo y producción sostenibles</p>
+    <!-- Hero Section -->
+    <header class="relative h-[60vh] flex items-center justify-center text-center text-white overflow-hidden bg-slate-900">
+        <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1920&q=80" alt="[Imagen de bosque]" class="absolute inset-0 w-full h-full object-cover opacity-50">
+        <div class="relative z-10 px-4 fade-in">
+            <div class="bg-amber-600 inline-block p-4 rounded-xl mb-6 shadow-2xl">
+                <i class="fa-solid fa-recycle text-5xl"></i>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black italic mb-2 tracking-tighter">ODS 12</h1>
+            <p class="text-2xl md:text-4xl font-light tracking-widest uppercase">Producción y Consumo Responsables</p>
+        </div>
     </header>
 
-    <main class="container mx-auto px-4 pb-12">
-        
-        <!-- Contenedor 1: Menú de Navegación (5 enlaces) -->
-        <nav class="ods-container sticky top-0 z-50 flex flex-wrap justify-center gap-4 bg-white shadow-md">
-            <a href="#elemento1" class="nav-link px-4 py-2 border border-amber-600 rounded">Elemento 1</a>
-            <a href="#elemento2" class="nav-link px-4 py-2 border border-amber-600 rounded">Elemento 2</a>
-            <a href="#elemento3" class="nav-link px-4 py-2 border border-amber-600 rounded">Elemento 3</a>
-            <a href="#elemento4" class="nav-link px-4 py-2 border border-amber-600 rounded">Elemento 4</a>
-            <!-- Enlace a la "otra página" (cambio de modo) -->
-            <button onclick="togglePage()" id="toggleBtn" class="nav-link px-4 py-2 bg-amber-100 border border-amber-600 rounded font-bold">
-                Ir a Página Secundaria
+    <!-- Barra de navegación -->
+    <nav class="nav-glass sticky top-0 z-50 py-4 px-6 shadow-sm">
+        <div class="container mx-auto flex flex-wrap justify-between items-center gap-4">
+            <div class="flex gap-2 md:gap-8 overflow-x-auto whitespace-nowrap">
+                <a href="#intro" class="nav-item">Inicio</a>
+                <a href="#elemento1" class="nav-item">Galería</a>
+                <a href="#elemento2" class="nav-item">Metas ONU</a>
+                <a href="#elemento3" class="nav-item">Recursos</a>
+                <a href="#elemento4" class="nav-item">Imagen Ambiental</a>
+            </div>
+            <button onclick="togglePage()" id="toggleBtn" class="toggle-btn flex items-center gap-3">
+                <i class="fa-solid fa-earth-americas"></i>
+                <span id="btnText">Explorar Datos Destacables</span>
             </button>
-        </nav>
+        </div>
+    </nav>
 
-        <!-- ================= PÁGINA INDEX ================= -->
-        <div id="page-index">
-            <section class="ods-container">
-                <h2 class="text-2xl font-bold mb-4">Introducción Inicial</h2>
-                <p class="text-gray-700 leading-relaxed">
-                    El consumo y la producción mundiales —fuerzas impulsoras de la economía mundial— dependen del uso del medio ambiente natural y de los recursos de una manera que continúa teniendo efectos destructivos sobre el planeta. El progreso económico y social conseguido durante el último siglo ha ido acompañado de una degradación medioambiental que está poniendo en peligro los mismos sistemas de los que depende nuestro desarrollo futuro.
-                </p>
+    <main class="container mx-auto px-4 py-10 max-w-6xl">
+        
+        <!-- PÁGINA 1: INDEX -->
+        <div id="page-index" class="fade-in">
+            
+            <section id="intro" class="ods-container">
+                <span class="info-badge">Contexto Global</span>
+                <h2 class="text-4xl font-black mb-6 text-slate-800">¿Qué significa consumir con responsabilidad?</h2>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="space-y-4 text-lg text-slate-600">
+                        <p>
+                            El consumo y la producción sostenibles consisten en fomentar el uso eficiente de los recursos y la energía. Se trata de **"hacer más y mejor con menos"**. No es solo una cuestión ambiental, es una necesidad económica y social para garantizar el bienestar de las generaciones futuras.
+                        </p>
+                        <p>
+                            Actualmente, el ser humano consume recursos a un ritmo que la Tierra no puede regenerar. Si la población mundial alcanza los 9.600 millones de personas en 2050, se podrían necesitar el equivalente a casi **tres planetas** para proporcionar los recursos naturales necesarios para mantener los estilos de vida actuales.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-2xl border-2 border-dashed border-amber-200">
+                        <h4 class="font-bold text-amber-800 mb-4 italic">Sabías que...</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle mt-1 text-amber-600"></i>
+                                <span>Un tercio de toda la comida producida se desperdicia.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle mt-1 text-amber-600"></i>
+                                <span>El sector doméstico consume el 29% de la energía mundial.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fa-solid fa-check-circle mt-1 text-amber-600"></i>
+                                <span>Solo el 0.5% del agua del planeta es potable y accesible.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </section>
 
-            <!-- Elemento 1: Imagen Fotográfica -->
+            <!-- Elemento 1: Fotos -->
             <div id="elemento1" class="ods-container">
-                <h3 class="text-xl font-bold mb-2">Elemento 1: Entorno Sostenible</h3>
-                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1000&q=80" alt="[Imagen de reciclaje y naturaleza]">
-                <p class="italic text-sm text-center">Fotografía representativa del ciclo de vida de los productos.</p>
-            </div>
-
-            <!-- Elemento 2: Objetivos (Metas) con imágenes intermedias -->
-            <div id="elemento2" class="ods-container">
-                <h2 class="text-2xl font-bold mb-4">Elemento 2: Metas del ODS 12</h2>
-                <p class="mb-4">Para el año 2030, se busca lograr la gestión sostenible y el uso eficiente de los recursos naturales, reduciendo a la mitad el desperdicio de alimentos por habitante.</p>
-                
-                <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=500&q=80" alt="[Imagen de alimentos frescos]" class="w-1/2 mx-auto">
-                
-                <h3 class="text-lg font-semibold mt-4">Reducción de Desechos</h3>
-                <p class="mb-4">Es fundamental disminuir sustancialmente la generación de desechos mediante actividades de prevención, reducción, reciclado y reutilización.</p>
-                
-                <img src="https://images.unsplash.com/photo-1591193512858-aa2d60bc394a?auto=format&fit=crop&w=500&q=80" alt="[Imagen de centro de reciclaje]" class="w-1/2 mx-auto">
-                
-                <p class="mt-4">Fomentar que las empresas, especialmente las grandes, adopten prácticas sostenibles e incorporen información sobre la sostenibilidad en su ciclo de presentación de informes.</p>
-            </div>
-
-            <!-- Elemento 3: Lista de puntos con links -->
-            <div id="elemento3" class="ods-container">
-                <h3 class="text-xl font-bold mb-2">Elemento 3: Páginas para saber más</h3>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><a href="https://www.un.org/sustainabledevelopment/es/sustainable-consumption-production/" target="_blank" class="text-blue-600 underline">Naciones Unidas - ODS 12</a></li>
-                    <li><a href="https://www.fao.org/sustainable-development-goals/goals/goal-12/es/" target="_blank" class="text-blue-600 underline">FAO: Producción Sostenible</a></li>
-                    <li><a href="https://es.greenpeace.org/es/que-puedes-hacer-tu/consumo-responsable/" target="_blank" class="text-blue-600 underline">Greenpeace: Consumo Responsable</a></li>
-                </ul>
-            </div>
-
-            <!-- Elemento 4: Infografía -->
-            <div id="elemento4" class="ods-container">
-                <h3 class="text-xl font-bold mb-4">Elemento 4: Infografía de Impacto</h3>
-                <div class="infografia text-center">
-                    <div class="bg-amber-600 text-white p-4 mb-2 font-bold uppercase">Datos del Consumo Mundial</div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
-                        <div class="border p-2">
-                            <span class="block text-3xl font-bold">1.3</span>
-                            <span class="text-sm">Mil millones de toneladas de alimentos se desperdician</span>
-                        </div>
-                        <div class="border p-2">
-                            <span class="block text-3xl font-bold">3</span>
-                            <span class="text-sm">Planetas necesitaríamos si seguimos este ritmo</span>
-                        </div>
-                        <div class="border p-2">
-                            <span class="block text-3xl font-bold">3%</span>
-                            <span class="text-sm">Del agua mundial es potable</span>
+                <h3 class="text-3xl font-bold mb-8 flex items-center gap-4">
+                    <i class="fa-solid fa-camera text-amber-600"></i> Elemento 1: El Rostro del Cambio
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="image-zoom shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&w=800&q=80" alt="[Agricultura responsable]" class="w-full h-80 object-cover">
+                    </div>
+                    <div class="flex flex-col justify-center space-y-4">
+                        <h4 class="text-2xl font-black text-amber-700">Producción Local y Ecológica</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Fomentar los mercados locales reduce la huella de carbono del transporte y apoya la economía de las comunidades. Elegir productos de temporada y sin plásticos es una acción directa para el ODS 12.
+                        </p>
+                        <div class="flex gap-4">
+                            <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-lg text-sm font-bold">#Km0</span>
+                            <span class="bg-amber-100 text-amber-800 px-3 py-1 rounded-lg text-sm font-bold">#SinPlastico</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Elemento 2: Metas detalladas -->
+            <div id="elemento2" class="ods-container">
+                <h3 class="text-3xl font-black mb-10 text-center">Elemento 2: Metas del Objetivo 12</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-slate-50 rounded-2xl border-b-8 border-amber-600 hover:bg-white hover:shadow-xl transition">
+                        <div class="w-12 h-12 bg-amber-600 text-white rounded-full flex items-center justify-center mb-4 font-bold">12.2</div>
+                        <h4 class="font-bold mb-2">Uso Eficiente de Recursos</h4>
+                        <p class="text-sm text-slate-600">De aquí a 2030, lograr la gestión sostenible y el uso eficiente de los recursos naturales para frenar la degradación ambiental.</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 rounded-2xl border-b-8 border-amber-600 hover:bg-white hover:shadow-xl transition">
+                        <div class="w-12 h-12 bg-amber-600 text-white rounded-full flex items-center justify-center mb-4 font-bold">12.5</div>
+                        <h4 class="font-bold mb-2">Reducción de Residuos</h4>
+                        <p class="text-sm text-slate-600">Reducir considerablemente la generación de desechos mediante actividades de prevención, reducción, reciclado y reutilización.</p>
+                    </div>
+                    <div class="p-6 bg-slate-50 rounded-2xl border-b-8 border-amber-600 hover:bg-white hover:shadow-xl transition">
+                        <div class="w-12 h-12 bg-amber-600 text-white rounded-full flex items-center justify-center mb-4 font-bold">12.8</div>
+                        <h4 class="font-bold mb-2">Educación Sostenible</h4>
+                        <p class="text-sm text-slate-600">Asegurar que las personas de todo el mundo tengan la información y los conocimientos pertinentes para el desarrollo sostenible.</p>
+                    </div>
+                </div>
+                <div class="mt-10 p-8 bg-amber-50 rounded-3xl flex flex-col md:flex-row items-center gap-8">
+                    <img src="https://images.unsplash.com/photo-1591193512858-aa2d60bc394a?auto=format&fit=crop&w=400&q=80" alt="[Plantas en botellas]" class="w-48 h-48 object-cover rounded-full border-4 border-white shadow-lg">
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold text-amber-900 mb-2">Hacia una Economía Circular</h4>
+                        <p class="text-amber-800">El modelo de "extraer, fabricar, usar y tirar" ha caducado. La meta es crear un sistema donde los productos estén diseñados para ser reparados, reutilizados y finalmente reciclados, manteniendo el valor de los materiales el mayor tiempo posible.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elemento 3: Links -->
+            <div id="elemento3" class="ods-container">
+                <h3 class="text-2xl font-bold mb-6">Elemento 3: Guías y Recursos</h3>
+                <div class="flex flex-col gap-4">
+                    <a href="https://www.un.org/sustainabledevelopment/es/sustainable-consumption-production/" target="_blank" class="flex items-center justify-between p-4 bg-white border-2 border-slate-100 rounded-xl hover:border-amber-500 transition group">
+                        <span class="flex items-center gap-3 font-bold text-slate-700">
+                            <i class="fa-solid fa-link text-amber-600"></i> Portal Oficial ONU - ODS 12
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-amber-600 group-hover:translate-x-2 transition"></i>
+                    </a>
+                    <a href="https://www.fao.org/sustainable-development-goals/goals/goal-12/es/" target="_blank" class="flex items-center justify-between p-4 bg-white border-2 border-slate-100 rounded-xl hover:border-amber-500 transition group">
+                        <span class="flex items-center gap-3 font-bold text-slate-700">
+                            <i class="fa-solid fa-wheat-awn text-amber-600"></i> FAO: Alimentación Sostenible
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-slate-300 group-hover:text-amber-600 group-hover:translate-x-2 transition"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Elemento 4: IMAGEN GENÉRICA -->
+            <div id="elemento4" class="ods-container">
+                <h3 class="text-3xl font-black mb-8 text-center text-amber-800 uppercase italic">Elemento 4: Sostenibilidad en Acción</h3>
+                <div class="bg-slate-100 p-4 md:p-10 rounded-3xl shadow-inner border-2 border-slate-200">
+                    <div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-lg overflow-hidden border-4 border-white image-zoom">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80" 
+                             alt="[Imagen de reciclaje y sostenibilidad]" 
+                             class="w-full h-[500px] object-cover">
+                    </div>
+                </div>
+                <p class="mt-6 text-center text-slate-500 font-medium italic">"El cambio comienza con una decisión consciente cada día."</p>
+            </div>
         </div>
 
-        <!-- ================= PÁGINA SECUNDARIA ================= -->
-        <div id="page-secundaria" class="hidden-page">
+        <!-- PÁGINA 2: DATOS DESTACABLES -->
+        <div id="page-secundaria" class="hidden-page fade-in">
+            
             <section class="ods-container">
-                <h2 class="text-2xl font-bold mb-4">Datos Destacables</h2>
-                <p class="text-gray-700">Explora las estadísticas y hechos más relevantes sobre el impacto de nuestro consumo en la salud del planeta.</p>
+                <span class="info-badge">Análisis Profundo</span>
+                <h2 class="text-4xl font-black text-slate-800 mb-6">Datos que obligan a la reflexión</h2>
+                <p class="text-xl text-slate-600 leading-relaxed">
+                    Las estadísticas actuales revelan una desconexión crítica entre nuestras necesidades y nuestra capacidad de gestión. Estos datos destacan los puntos donde la intervención es más urgente.
+                </p>
             </section>
 
-            <!-- Elemento 1: Fotografía diferente -->
+            <!-- Elemento 1: Foto Secundaria -->
             <div id="elemento1-sec" class="ods-container">
-                <h3 class="text-xl font-bold mb-2">Elemento 1: Impacto Industrial</h3>
-                <img src="https://images.unsplash.com/photo-1567393528677-d6df27d99c3f?auto=format&fit=crop&w=1000&q=80" alt="[Imagen de contaminación industrial]">
-                <p class="italic text-sm text-center">La necesidad de transformar la industria pesada en procesos limpios.</p>
+                <h3 class="text-2xl font-bold mb-6">Elemento 1: El Impacto de la Tecnología</h3>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80" alt="[Residuos electrónicos]" class="rounded-3xl shadow-xl h-64 w-full object-cover">
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold text-amber-700 italic">La Basura Electrónica</h4>
+                        <p class="text-slate-600">
+                            Cada año se generan millones de toneladas de residuos electrónicos. Solo el 20% se recicla formalmente, a pesar de contener metales valiosos y materiales tóxicos que contaminan el suelo y el agua. El ODS 12 insta a las empresas tecnológicas a diseñar productos más duraderos y fáciles de reciclar.
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Elemento 2: Texto datos destacables con imágenes intermedias -->
+            <!-- Elemento 2: Texto Datos con fotos -->
             <div id="elemento2-sec" class="ods-container">
-                <h2 class="text-2xl font-bold mb-4">Elemento 2: Estadísticas Críticas</h2>
-                <p class="mb-4">El sector de la alimentación es responsable de aproximadamente el 30% del consumo total de energía del mundo y del 22% de las emisiones de gases de efecto invernadero.</p>
+                <h3 class="text-3xl font-black mb-12">Elemento 2: Radiografía del Consumo Actual</h3>
                 
-                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=500&q=80" alt="[Imagen de paneles solares]" class="w-1/2 mx-auto">
-                
-                <h3 class="text-lg font-semibold mt-4">Huella de Carbono</h3>
-                <p class="mb-4">Si la población mundial llega a los 9600 millones en 2050, se necesitaría el equivalente a casi tres planetas para proporcionar los recursos naturales necesarios para mantener los estilos de vida actuales.</p>
-                
-                <img src="https://images.unsplash.com/photo-1516383740770-fbcc5c247704?auto=format&fit=crop&w=500&q=80" alt="[Imagen de basurero tecnológico]" class="w-1/2 mx-auto">
-                
-                <p class="mt-4">Menos del 20% del plástico se recicla a nivel mundial, lo que genera una crisis de contaminación en los océanos.</p>
+                <div class="grid gap-20">
+                    <!-- Dato 1 -->
+                    <div class="flex flex-col md:flex-row gap-10 items-center">
+                        <div class="flex-1 order-2 md:order-1">
+                            <h4 class="text-2xl font-bold text-amber-700 mb-4">La Energía detrás de la Comida</h4>
+                            <p class="text-slate-600 text-lg leading-relaxed">
+                                El sector alimentario es responsable de casi el **30% del consumo energético mundial** y genera el **22% de las emisiones de gases de efecto invernadero**. Cuando tiramos comida, no solo tiramos nutrientes, tiramos toda la energía y el agua que se usó para cultivarla, transportarla y empaquetarla.
+                            </p>
+                        </div>
+                        <div class="flex-1 order-1 md:order-2">
+                            <img src="https://images.unsplash.com/photo-1466611653911-95282fc3656b?auto=format&fit=crop&w=600&q=80" alt="[Paneles solares en campo]" class="rounded-[2rem] shadow-2xl rotate-2 hover:rotate-0 transition duration-500">
+                        </div>
+                    </div>
+
+                    <!-- Dato 2 -->
+                    <div class="flex flex-col md:flex-row gap-10 items-center">
+                        <div class="flex-1">
+                            <img src="https://images.unsplash.com/photo-1498402432249-422323e2079f?auto=format&fit=crop&w=600&q=80" alt="[Niño bebiendo agua]" class="rounded-[2rem] shadow-2xl -rotate-2 hover:rotate-0 transition duration-500">
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-2xl font-bold text-amber-700 mb-4">El Agua: Oro Transparente</h4>
+                            <p class="text-slate-600 text-lg leading-relaxed">
+                                Menos del **3% del agua del mundo es potable**. El aumento del consumo y la contaminación están agotando las fuentes de agua dulce a un ritmo alarmante. La industria textil, por ejemplo, utiliza 93.000 millones de metros cúbicos de agua al año, suficiente para satisfacer las necesidades de 5 millones de personas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Elemento 3: Lista de noticias -->
+            <!-- Elemento 3: Noticias -->
             <div id="elemento3-sec" class="ods-container">
-                <h3 class="text-xl font-bold mb-2">Elemento 3: Páginas de Noticias</h3>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><a href="https://news.un.org/es/tags/ods-12" target="_blank" class="text-blue-600 underline">Últimas noticias ONU: Consumo Sostenible</a></li>
-                    <li><a href="https://elpais.com/noticias/consumo-responsable/" target="_blank" class="text-blue-600 underline">El País: Artículos sobre Consumo</a></li>
-                    <li><a href="https://www.nationalgeographic.es/medio-ambiente" target="_blank" class="text-blue-600 underline">NatGeo: Medio Ambiente y Futuro</a></li>
-                </ul>
+                <h3 class="text-2xl font-bold mb-6">Elemento 3: Canales de Actualidad</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="https://news.un.org/es/tags/ods-12" target="_blank" class="p-6 bg-slate-900 text-white rounded-2xl flex items-center justify-between hover:scale-[1.02] transition">
+                        <span><i class="fa-solid fa-globe mr-3 text-amber-500"></i> Últimas Noticias ONU ODS 12</span>
+                        <i class="fa-solid fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://elpais.com/noticias/consumo-responsable/" target="_blank" class="p-6 bg-slate-900 text-white rounded-2xl flex items-center justify-between hover:scale-[1.02] transition">
+                        <span><i class="fa-solid fa-newspaper mr-3 text-amber-500"></i> El País: Consumo Sostenible</span>
+                        <i class="fa-solid fa-external-link-alt"></i>
+                    </a>
+                </div>
             </div>
 
-            <!-- Elemento 4: Vídeo relacionado -->
+            <!-- Elemento 4: Video -->
             <div id="elemento4-sec" class="ods-container">
-                <h3 class="text-xl font-bold mb-4">Elemento 4: Vídeo Explicativo</h3>
-                <div class="aspect-video">
-                    <iframe class="w-full h-full rounded" src="https://www.youtube.com/embed/5U7zBIn5_h8" title="ODS 12 Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <h3 class="text-2xl font-bold mb-6">Elemento 4: Educación Multimedia</h3>
+                <div class="aspect-video rounded-3xl overflow-hidden shadow-2xl ring-8 ring-amber-100">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/5U7zBIn5_h8" title="Educación ODS 12" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <footer class="bg-gray-800 text-white p-6 text-center">
-        <p>&copy; 2024 Proyecto Agenda 2030 - ODS 12</p>
+    <footer class="bg-slate-900 text-white py-20 px-6 mt-20 border-t-8 border-amber-600">
+        <div class="container mx-auto text-center">
+            <div class="mb-10">
+                <h2 class="text-4xl font-black italic mb-4">Agenda 2030</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Únete al movimiento global por un planeta más sostenible. Pequeñas acciones individuales generan grandes cambios colectivos.</p>
+            </div>
+            <div class="flex justify-center gap-10 mb-12">
+                <a href="#" class="text-3xl hover:text-amber-500 transition"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="text-3xl hover:text-amber-500 transition"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-3xl hover:text-amber-500 transition"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-slate-500 text-sm">
+                <p>&copy; 2024 Proyecto ODS 12 - Educativo. Por un futuro mejor.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -211,31 +386,21 @@
         function togglePage() {
             const indexPage = document.getElementById('page-index');
             const secPage = document.getElementById('page-secundaria');
-            const btn = document.getElementById('toggleBtn');
+            const btnText = document.getElementById('btnText');
             
             if (isIndex) {
-                indexPage.classList.add('hidden-page');
-                secPage.classList.remove('hidden-page');
-                btn.innerText = "Ir a Página Index";
+                indexPage.style.display = 'none';
+                secPage.style.display = 'block';
+                btnText.innerText = "Volver al Inicio";
                 isIndex = false;
             } else {
-                indexPage.classList.remove('hidden-page');
-                secPage.classList.add('hidden-page');
-                btn.innerText = "Ir a Página Secundaria";
+                indexPage.style.display = 'block';
+                secPage.style.display = 'none';
+                btnText.innerText = "Explorar Datos Destacables";
                 isIndex = true;
             }
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        // Simulación de navegación interna para los enlaces del menú
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                if(e.target.id !== 'toggleBtn') {
-                    // Solo efecto visual
-                    console.log("Navegando a: " + link.getAttribute('href'));
-                }
-            });
-        });
     </script>
 </body>
 </html>
